@@ -129,6 +129,8 @@ plot(dat$DateTime, dat$GActivePower, type="l",
 # Set png output
 png(file = "plot4.png", width = 480, height = 480, units = "px")
 
+par(mfcol=c(2,2))
+
 # write graph into png file
 plot( dat$DateTime, dat$GActivePower, type = "l", xlab=NA,
       ylab="Global Active Power (kilowatts)")
