@@ -1,4 +1,6 @@
 
+# function to crate a txt file with the data to use 
+# data from the dates 2007-02-01 and 2007-02-02
 grepByDateIn <- function(fin, fout) {
   
   fdes_in <- file(fin, "r")
@@ -31,6 +33,8 @@ grepByDateIn <- function(fin, fout) {
   
 }
 
+
+# function not used 
 readByDate <- function( filename, d1, d2, newheaders) {
   
   date1 <- as.Date( strptime(d1, "%D"))
@@ -82,12 +86,16 @@ readByDate <- function( filename, d1, d2, newheaders) {
   return(df)
 }
   
-
+# Names for colums
 cnames <- c("Date", "Time", "GActivePower", "GReactivePower", 
             "Voltage", "GIntensity", "SubMetering1", "SubMetering2",
             "SubMetering3")
 
+
+# Original data file 
 fileName <- "./household_power_consumption.txt"
+
+# Data file filtered by date (2007-02-01 and 2007-02-02)
 fileOutName <- "./household_power_consumption_filtered.txt"
 
 if( ! file.exists(fileOutName) ) { 
@@ -96,14 +104,20 @@ if( ! file.exists(fileOutName) ) {
 
 }
 
+# Read data 
 dat <- read.table(fileOutName, header =TRUE, sep =';', col.names=cnames)
 
+
+#Crate histogram screen output 
 hist(dat$GActivePower, col = "red", 
      xlab="Global Active Power (in kilowatt)", 
      main ="Global Active Power")
 
-png(file = "Plot1.png", width = 480, height = 480, units = "px")
 
+# Set png output
+png(file = "plot1.png", width = 480, height = 480, units = "px")
+
+# write histogram 
 hist(dat$GActivePower, col = "red", 
      xlab="Global Active Power (in kilowatt)", 
      main ="Global Active Power")
